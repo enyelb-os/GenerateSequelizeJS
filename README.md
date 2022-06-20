@@ -1,6 +1,6 @@
-# GenerateSequalizeJS
+# GenerateSequelizeJS
 
-Simple generator models for sequalize.js
+Simple generator models for sequelize.js
 
 ### Example comand
 ```*.java
