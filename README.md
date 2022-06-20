@@ -5,7 +5,7 @@ Simple generator models for sequelize.js
 ### Example comand
 ```*.java
 
-java -jar .\sequelize.jar --user root --pass root --name database_name
+java -jar .\sequalize.jar --user root --pass root --name database_name
 
 --host -h
 --port
