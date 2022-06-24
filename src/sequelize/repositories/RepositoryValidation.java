@@ -16,7 +16,7 @@ public class RepositoryValidation {
             .Line(" * Exists Properties")
             .Line(" *******************************************/").Line(1)
             .Template(Block.New("const existsProperties = (properties, data, params, columns) => ").Block(Content.New()
-                .Line(table.primaryKey() != null, "properties = BaseRepository.columnAndWhere(properties, '", table.primaryKey().name, "', data.", table.primaryKey().name, ", columns);")
+                .Line(table.primaryKey() != null, "properties = BaseRepository.columnAndWhere(properties, '", table.primaryKeyName(), "', data.", table.primaryKeyName(), ", columns);")
                 .Line("return properties;")
             )).Line(1)
             .Line("/*******************************************")
