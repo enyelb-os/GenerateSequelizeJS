@@ -1,5 +1,6 @@
 package controllers;
 
+import db.Command;
 import file.FileCreator;
 import template.Block;
 import template.Content;
@@ -8,21 +9,21 @@ import tools.gnzlz.database.autocode.model.ACTable;
 
 public class ControllerValidation {
 
-    public static void create(ACTable table, String path){
+    public static void create(ACTable table, String path, Command command){
         FileCreator.createFile(path,table.name,"js",File.New()
-            .Line("import { validateAuthenticate } from '../../controller/login.js';").Line(1)
+            .Text(command.express && command.jwt,"import { validateAuthenticate } from '../../controller/login.js';").Line(1)
             .Line("/*******************************************")
             .Line(" * Before Find")
             .Line(" *******************************************/").Line(1)
             .Template(Block.New("const beforeFind = async (req, res, next) => ").Block(Content.New()
-                .Line("validateAuthenticate(req, res);")
+                .Line(command.express && command.jwt,"validateAuthenticate(req, res);")
                 .Line("next();")
             )).Line(1)
             .Line("/*******************************************")
             .Line(" * Before Create ")
             .Line(" *******************************************/").Line(1)
             .Template(Block.New("const beforeCreate = async (req, res, next) => ").Block(Content.New()
-                .Line("validateAuthenticate(req, res);")
+                .Line(command.express && command.jwt,"validateAuthenticate(req, res);")
                 .Line("next();")
             )).Line(1)
             .Line("/*******************************************")

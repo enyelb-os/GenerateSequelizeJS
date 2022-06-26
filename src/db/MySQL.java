@@ -13,6 +13,14 @@ public class MySQL extends DBConfiguration {
     public static String password = "";
     public static String name = "";
 
+    public static void initConfig(Command command){
+        if(!command.host.isEmpty()) host = command.host;
+        if(command.port != -1) port = command.port;
+        if(!command.user.isEmpty()) user = command.user;
+        if(!command.password.isEmpty()) password = command.password;
+        if(!command.name.isEmpty()) name = command.name;
+    }
+
     @Override
     protected void initConnection(PropertiesConnection connection) {
         connection
