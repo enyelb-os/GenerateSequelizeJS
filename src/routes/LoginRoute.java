@@ -5,7 +5,7 @@ import template.File;
 
 public class LoginRoute {
 
-    public static void create(String path){
+    public static void create(String path, String absolute){
         FileCreator.createFile(path , "login", "js", File.New()
             .Text("import {authenticate} from '../controller/login.js';").Line(1)
             .Line("import express from 'express';").Line(1)
@@ -13,7 +13,7 @@ public class LoginRoute {
             .Line("/*******************************************")
             .Line(" * Routes ")
             .Line(" *******************************************/").Line(1)
-            .Line("Login.post('/login', authenticate);").Line(1)
+            .Line("Login.post('", absolute, "/login', authenticate);").Line(1)
             .Line("/*******************************************")
             .Line(" * Routes ")
             .Line(" *******************************************/").Line(1)

@@ -47,16 +47,16 @@ public class Console {
             }
             catalog.schemes.forEach(scheme -> {
                 String schemeName = scheme.nameDefault();
-                if(command.express){
-                    ConfigRoute.create(scheme, catalog.name, command);
-                    if(command.jwt){
-                        LoginRoute.create(catalog.name + "/" + schemeName + "/route");
-                        LoginController.create(catalog.name + "/" + schemeName + "/controller");
-                    }
-                }
                 String absolute = "";
                 if(command.modules){
                     absolute = "/" + catalog.name + "/" + schemeName;
+                }
+                if(command.express){
+                    ConfigRoute.create(scheme, catalog.name, command);
+                    if(command.jwt){
+                        LoginRoute.create(catalog.name + "/" + schemeName + "/route", absolute);
+                        LoginController.create(catalog.name + "/" + schemeName + "/controller");
+                    }
                 }
                 for (ACTable table: scheme.tables){
                     ModelBase.create(table, catalog, catalog.name + "/" + schemeName + "/base/model");
