@@ -8,8 +8,7 @@ public class Route {
 
     public static void create(ACTable table, String path){
         FileCreator.createFile(path , table.name, "js", File.New()
-            .Text("import express from 'express';").Line(1)
-            .Line("import " , table.nameCamelCase(), " from '../base/route/" , table.name , ".js';").Line(1)
+            .Text("import " , table.nameCamelCase(), " from '../base/route/" , table.name , ".js';").Line(1)
             .Line("/*******************************************")
             .Line(" * Export ")
             .Line(" *******************************************/").Line(1)

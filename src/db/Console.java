@@ -2,7 +2,11 @@ package db;
 
 import controllers.ControllerBase;
 import controllers.Controller;
+import controllers.ControllerValidation;
+import controllers.LoginController;
+import middlewares.JWTBase;
 import routes.ConfigRoute;
+import routes.LoginRoute;
 import routes.RouteBase;
 import routes.Route;
 import sequelize.models.ConfigSequelize;
@@ -66,9 +70,12 @@ public class Console {
         dataBase.catalogs.forEach(catalog -> {
             ConfigSequelize.create(dataBase.configuration.connection().properties(), catalog, catalog.name);
             ConfigRepository.create(catalog.name);
+            JWTBase.create(catalog.name + "/middleware");
             catalog.schemes.forEach(scheme -> {
                 String schemeName = scheme.nameDefault();
                 ConfigRoute.create(scheme, catalog.name);
+                LoginRoute.create(catalog.name + "/" + schemeName + "/route");
+                LoginController.create(catalog.name + "/" + schemeName + "/controller");
                 for (ACTable table: scheme.tables){
                     ModelBase.create(table, catalog, catalog.name + "/" + schemeName + "/base/model");
                     Model.create(table, catalog.name + "/" + schemeName + "/model");
@@ -77,6 +84,7 @@ public class Console {
                     Route.create(table, catalog.name + "/" + schemeName + "/route");
                     ControllerBase.create(table, catalog.name + "/" + schemeName + "/base/controller");
                     Controller.create(table, catalog.name + "/" + schemeName + "/controller");
+                    ControllerValidation.create(table, catalog.name + "/" + schemeName + "/validation/controller");
                     RepositoryBase.create(table, catalog.name + "/" + schemeName + "/base/repository");
                     Repository.create(table, catalog.name + "/" + schemeName + "/repository");
                     RepositoryValidation.create(table, catalog.name + "/" + schemeName + "/validation/repository");

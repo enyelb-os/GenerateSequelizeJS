@@ -11,7 +11,8 @@ public class ControllerBase {
 
     public static void create(ACTable table, String path){
         FileCreator.createFile(path ,table.name,"js", File.New()
-            .Line("import ", table.nameCamelCase(), "Repository from '../repository/", table.name , ".js';")
+            .Text("import ", table.nameCamelCase(), "Repository from '../repository/", table.name , ".js';")
+            .Line("import ", table.nameCamelCase(), "Validation from '../../validation/controller/", table.name , ".js';").Line(1)
             .Line("/*******************************************")
             .Line(" * Find ")
             .Line(" *******************************************/").Line(1)
@@ -47,7 +48,8 @@ public class ControllerBase {
             .Line(" *******************************************/").Line(1)
             .Template(Block.New("const ", table.nameCamelCase(), " = ").Block(Content.New()
                 .Line("find,")
-                .Line("create")
+                .Line("create,")
+                .Line("... ", table.nameCamelCase(), "Validation")
             )).Line(1)
             .Line("/*******************************************")
             .Line(" * Export ")
