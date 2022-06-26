@@ -4,7 +4,6 @@ import file.FileCreator;
 import template.Block;
 import template.Content;
 import template.File;
-import tools.gnzlz.database.autocode.model.ACCatalog;
 import tools.gnzlz.database.autocode.model.ACTable;
 
 public class ControllerBase {

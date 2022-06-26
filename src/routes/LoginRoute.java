@@ -2,7 +2,6 @@ package routes;
 
 import file.FileCreator;
 import template.File;
-import tools.gnzlz.database.autocode.model.ACTable;
 
 public class LoginRoute {
 

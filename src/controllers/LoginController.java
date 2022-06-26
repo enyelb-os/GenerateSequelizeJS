@@ -4,7 +4,6 @@ import file.FileCreator;
 import template.Block;
 import template.Content;
 import template.File;
-import tools.gnzlz.database.autocode.model.ACTable;
 
 public class LoginController {
 
@@ -33,13 +32,11 @@ public class LoginController {
             .Line("/*******************************************")
             .Line(" * Validate Authenticate ")
             .Line(" *******************************************/").Line(1)
-            .Template(Block.New("const validateAuthenticate = async (req, res, next) => ").Block(Content.New()
+            .Template(Block.New("const validateAuthenticate = async (req, res) => ").Block(Content.New()
                 .Line("const token = req.header('x-token');")
                 .Line("const response = validateToken(token, 'secret seed');")
                 .Template(Block.New("if(!response.ok) ").Block(Content.New()
                     .Line("res.status(401).json(response);")
-                )).Template(Block.New(" else ").Block(Content.New()
-                    .Line(" next();")
                 ))
             )).Line(1)
             .Line("/*******************************************")
