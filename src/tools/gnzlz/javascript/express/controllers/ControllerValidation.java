@@ -1,4 +1,4 @@
-package controllers;
+package tools.gnzlz.javascript.express.controllers;
 
 import db.Command;
 import file.FileCreator;

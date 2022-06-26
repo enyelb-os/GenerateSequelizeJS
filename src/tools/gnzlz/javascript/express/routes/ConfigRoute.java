@@ -1,4 +1,4 @@
-package routes;
+package tools.gnzlz.javascript.express.routes;
 
 import db.Command;
 import file.FileCreator;

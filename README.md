@@ -20,11 +20,11 @@ java -jar .\sequelize.jar --user root --pass root --name database_name
 ```*.js
 
 import express from 'express';
-import routes from './DatabaseName/default.js';
+import tools.gnzlz.javascript.express.routes from './DatabaseName/default.js';
 
 const app = express();
 
-app.use("/", routes);
+app.use("/", tools.gnzlz.javascript.express.routes);
 
 app.listen(11800, () => {
   console.log(`Servidor corriendo en puerto 11800`);

@@ -1,4 +1,4 @@
-package routes;
+package tools.gnzlz.javascript.express.routes;
 
 import file.FileCreator;
 import template.File;

@@ -1,4 +1,4 @@
-package sequelize.models;
+package tools.gnzlz.javascript.sequelize.models;
 
 import file.FileCreator;
 import template.Block;

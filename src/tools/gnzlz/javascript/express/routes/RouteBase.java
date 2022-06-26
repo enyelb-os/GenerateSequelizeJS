@@ -1,6 +1,5 @@
-package routes;
+package tools.gnzlz.javascript.express.routes;
 
-import db.Command;
 import file.FileCreator;
 import template.File;
 import tools.gnzlz.database.autocode.model.ACTable;

@@ -1,4 +1,4 @@
-package middlewares;
+package tools.gnzlz.javascript.middlewares;
 
 import file.FileCreator;
 import template.Block;

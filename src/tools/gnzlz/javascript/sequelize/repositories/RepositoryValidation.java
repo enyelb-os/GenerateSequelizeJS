@@ -1,10 +1,9 @@
-package sequelize.repositories;
+package tools.gnzlz.javascript.sequelize.repositories;
 
 import file.FileCreator;
 import template.Block;
 import template.Content;
 import template.File;
-import tools.gnzlz.database.autocode.model.ACColumn;
 import tools.gnzlz.database.autocode.model.ACTable;
 
 public class RepositoryValidation {
