@@ -5,7 +5,7 @@ import file.FileCreator;
 import template.File;
 import tools.gnzlz.database.autocode.model.*;
 
-public class ConfigRoute {
+public class RouteSequelizeUnited {
 
     public static void create(ACScheme scheme, String path, Command command){
         FileCreator.createFile(path , scheme.nameDefault() , "js", File.New()

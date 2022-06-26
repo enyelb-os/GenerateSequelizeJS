@@ -4,7 +4,7 @@ import file.FileCreator;
 import template.File;
 import tools.gnzlz.database.autocode.model.ACTable;
 
-public class Route {
+public class RouteSequelize {
 
     public static void create(ACTable table, String path){
         FileCreator.createFile(path , table.name, "js", File.New()

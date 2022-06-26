@@ -6,7 +6,7 @@ import template.Content;
 import template.File;
 import tools.gnzlz.database.autocode.model.ACTable;
 
-public class Controller {
+public class ControllerSequelize {
 
     public static void create(ACTable table, String path){
         FileCreator.createFile(path, table.name, "js", File.New()

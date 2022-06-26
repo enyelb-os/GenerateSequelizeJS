@@ -5,7 +5,7 @@ import template.Block;
 import template.Content;
 import template.File;
 
-public class ConfigRepository {
+public class RepositoryUtils {
 
     private static String sequelize = "Sequelize";
 

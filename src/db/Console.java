@@ -1,19 +1,19 @@
 package db;
 
-import tools.gnzlz.javascript.express.controllers.ControllerBase;
-import tools.gnzlz.javascript.express.controllers.Controller;
-import tools.gnzlz.javascript.express.controllers.ControllerValidation;
-import tools.gnzlz.javascript.express.controllers.LoginController;
+import tools.gnzlz.javascript.express.controllers.ControllerSequelizeBase;
+import tools.gnzlz.javascript.express.controllers.ControllerSequelize;
+import tools.gnzlz.javascript.express.controllers.ControllerSequelizeValidation;
+import tools.gnzlz.javascript.express.controllers.ControllerSequelizeLogin;
 import tools.gnzlz.javascript.middlewares.JWTBase;
-import tools.gnzlz.javascript.express.routes.ConfigRoute;
-import tools.gnzlz.javascript.express.routes.LoginRoute;
-import tools.gnzlz.javascript.express.routes.RouteBase;
-import tools.gnzlz.javascript.express.routes.Route;
-import tools.gnzlz.javascript.sequelize.models.ConfigSequelize;
+import tools.gnzlz.javascript.express.routes.RouteSequelizeUnited;
+import tools.gnzlz.javascript.express.routes.RouteSequelizeLogin;
+import tools.gnzlz.javascript.express.routes.RouteSequelizeBase;
+import tools.gnzlz.javascript.express.routes.RouteSequelize;
+import tools.gnzlz.javascript.sequelize.models.Database;
 import tools.gnzlz.javascript.sequelize.models.ModelBase;
 import tools.gnzlz.javascript.sequelize.models.Model;
 import tools.gnzlz.javascript.sequelize.models.ModelValidation;
-import tools.gnzlz.javascript.sequelize.repositories.ConfigRepository;
+import tools.gnzlz.javascript.sequelize.repositories.RepositoryUtils;
 import tools.gnzlz.javascript.sequelize.repositories.RepositoryBase;
 import tools.gnzlz.javascript.sequelize.repositories.Repository;
 import tools.gnzlz.javascript.sequelize.repositories.RepositoryValidation;
@@ -40,8 +40,8 @@ public class Console {
     public static <T extends DBConfiguration> void generate(Class<T> c, Command command) {
         ACDataBase dataBase = ACDataBase.dataBase(c, command.name);
         dataBase.catalogs.forEach(catalog -> {
-            ConfigSequelize.create(dataBase.configuration.connection().properties(), catalog, catalog.name);
-            ConfigRepository.create(catalog.name);
+            Database.create(dataBase.configuration.connection().properties(), catalog, catalog.name);
+            RepositoryUtils.create(catalog.name);
             if(command.jwt && command.express){
                 JWTBase.create(catalog.name + "/middleware");
             }
@@ -52,10 +52,10 @@ public class Console {
                     absolute = "/" + catalog.name + "/" + schemeName;
                 }
                 if(command.express){
-                    ConfigRoute.create(scheme, catalog.name, command);
+                    RouteSequelizeUnited.create(scheme, catalog.name, command);
                     if(command.jwt){
-                        LoginRoute.create(catalog.name + "/" + schemeName + "/route", absolute);
-                        LoginController.create(catalog.name + "/" + schemeName + "/controller");
+                        RouteSequelizeLogin.create(catalog.name + "/" + schemeName + "/route", absolute);
+                        ControllerSequelizeLogin.create(catalog.name + "/" + schemeName + "/controller");
                     }
                 }
                 for (ACTable table: scheme.tables){
@@ -66,11 +66,11 @@ public class Console {
                     Repository.create(table, catalog.name + "/" + schemeName + "/repository");
                     RepositoryValidation.create(table, catalog.name + "/" + schemeName + "/validation/repository");
                     if(command.express){
-                        RouteBase.create(table, catalog.name + "/" + schemeName + "/base/route", absolute);
-                        Route.create(table, catalog.name + "/" + schemeName + "/route");
-                        ControllerBase.create(table, catalog.name + "/" + schemeName + "/base/controller");
-                        Controller.create(table, catalog.name + "/" + schemeName + "/controller");
-                        ControllerValidation.create(table, catalog.name + "/" + schemeName + "/validation/controller", command);
+                        RouteSequelizeBase.create(table, catalog.name + "/" + schemeName + "/base/route", absolute);
+                        RouteSequelize.create(table, catalog.name + "/" + schemeName + "/route");
+                        ControllerSequelizeBase.create(table, catalog.name + "/" + schemeName + "/base/controller");
+                        ControllerSequelize.create(table, catalog.name + "/" + schemeName + "/controller");
+                        ControllerSequelizeValidation.create(table, catalog.name + "/" + schemeName + "/validation/controller", command);
                     }
                 }
             });

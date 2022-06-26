@@ -3,7 +3,7 @@ package tools.gnzlz.javascript.express.routes;
 import file.FileCreator;
 import template.File;
 
-public class LoginRoute {
+public class RouteSequelizeLogin {
 
     public static void create(String path, String absolute){
         FileCreator.createFile(path , "login", "js", File.New()

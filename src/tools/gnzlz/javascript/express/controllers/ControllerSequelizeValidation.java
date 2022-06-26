@@ -7,7 +7,7 @@ import template.Content;
 import template.File;
 import tools.gnzlz.database.autocode.model.ACTable;
 
-public class ControllerValidation {
+public class ControllerSequelizeValidation {
 
     public static void create(ACTable table, String path, Command command){
         FileCreator.createFile(path,table.name,"js",File.New()

@@ -8,7 +8,7 @@ import tools.gnzlz.database.autocode.model.ACCatalog;
 import tools.gnzlz.database.model.interfaces.Dialect;
 import tools.gnzlz.database.properties.PTConnection;
 
-public class ConfigSequelize {
+public class Database {
 
     private static String sequelize = "Sequelize";
     private static String dateTypes = "DataTypes";

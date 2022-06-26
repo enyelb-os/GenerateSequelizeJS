@@ -5,7 +5,7 @@ import template.Block;
 import template.Content;
 import template.File;
 
-public class LoginController {
+public class ControllerSequelizeLogin {
 
     public static void create(String path){
         FileCreator.createFile(path, "login", "js", File.New()
