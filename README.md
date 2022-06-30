@@ -72,22 +72,74 @@ app.listen(11800, () => {
 });
 ```
 
-### Example Api
+### Example Api Routes
 ```*.js
+
+// default
 
 GET List                        /table_name/list
 GET List Pagination             /table_name/list/:size/:limit
 GET List By Column              /table_name/list/by/:column/:value
 GET List By Column Pagination   /table_name/list/:size/:limit/by/:column/:value
-
 POST Create                     /table_name/create
-Example body
+
+// if it is multiple modules
+
+GET List                        /database_name/scheme_name/table_name/list
+GET List Pagination             /database_name/scheme_name/table_name/list/:size/:limit
+GET List By Column              /database_name/scheme_name/table_name/list/by/:column/:value
+GET List By Column Pagination   /database_name/scheme_name/table_name/list/:size/:limit/by/:column/:value
+POST Create                     /database_name/scheme_name/table_name/create
+```
+
+### JSON Body create
+```*.json
 {
-    "column_name" : 1,                // is primary key, is optional for update
-    "column_name":{                   // is foreign key, value is object for search primary key
+    "column_name" : 1,                // if it is primary key, is optional for update
+    "column_name":{                   // if it is foreign key, if "value" is an object it will be used for the main key search
         "column": "value"
     },
-    "column_name":"1",                // is value, set value literal
+    "column_name":"1",                // if it is value, set value literal
+    "table_name": {                   // 
+      "column": "value"
+    }
+}
+```
+
+### src/database/scheme/validation/controller
+```*.js
+/*******************************************
+ * Before Find
+ *******************************************/
+
+const beforeFind = async (req, res, next) => {
+  //http404(req, res);                          // add for hidden route    
+	validateAuthenticate(req, res);               // Validate Autentication with JWT
+	next();
 }
 
+/*******************************************
+ * Before Create 
+ *******************************************/
+
+const beforeCreate = async (req, res, next) => {
+	validateAuthenticate(req, res);                 // Validate Autentication with JWT
+	next();
+}
+```
+
+### src/database/scheme/validation/model
+```*.js
+
+/*******************************************
+ * Validation 
+ *******************************************/
+ 
+const TableName = {
+	column_name: {
+      // validations sequelize 
+  }
+  ...
+  ...
+}
 ```
