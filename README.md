@@ -61,11 +61,11 @@ database                  // Name data base
 ```*.js
 
 import express from 'express';
-import tools.gnzlz.javascript.express.routes from './DatabaseName/default.js';
+import routes from './DatabaseName/default.js';
 
 const app = express();
 
-app.use("/", tools.gnzlz.javascript.express.routes);
+app.use("/", routes);
 
 app.listen(11800, () => {
   console.log(`Servidor corriendo en puerto 11800`);
