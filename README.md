@@ -114,8 +114,8 @@ POST Create                     /database_name/scheme_name/table_name/create
 
 const beforeFind = async (req, res, next) => {
   //http404(req, res);                          // add for hidden route    
-	validateAuthenticate(req, res);               // Validate Autentication with JWT
-	next();
+  validateAuthenticate(req, res);               // Validate Autentication with JWT
+  next();
 }
 
 /*******************************************
@@ -123,8 +123,8 @@ const beforeFind = async (req, res, next) => {
  *******************************************/
 
 const beforeCreate = async (req, res, next) => {
-	validateAuthenticate(req, res);                 // Validate Autentication with JWT
-	next();
+  validateAuthenticate(req, res);                 // Validate Autentication with JWT
+  next();
 }
 ```
 
@@ -136,7 +136,7 @@ const beforeCreate = async (req, res, next) => {
  *******************************************/
  
 const TableName = {
-	column_name: {
+  column_name: {
       // validations sequelize 
   }
   ...
