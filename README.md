@@ -14,6 +14,47 @@ java -jar .\sequelize.jar --user root --pass root --name database_name
 --name -n
 --type -t
 
+--express -ex // integracion con express
+--jwt         // integracion con JWT
+--modules -m  // permitir multiples modulos
+
+```
+
+### Src Project
+```*.js
+database                  // Name data base
+├─ scheme                 // Name scheme (default)
+│  ├─ base                // Base code porject
+│  │  ├─ controller       // Controllers base
+│  │  │  └─ table.js      // All files (table names) 
+│  │  ├─ model            // Models base
+│  │  │  └─ table.js      // All files (table names)
+│  │  ├─ repository       // Repositories base
+│  │  │  └─ table.js      // All files (table names)
+│  │  └─ route            // Routes base
+│  │     └─ table.js      // All files (table names)
+│  ├─ controller          // Modifiable controllers
+│  │  ├─ table.js         // All files (table names)
+│  │  └─ login.js         // Integration jwt login
+│  ├─ model               // Modifiable model
+│  │  └─ table.js         // All files (table names)
+│  ├─ repository          // Modifiable repositories
+│  │  └─ table.js         // All files (table names)
+│  ├─ route               // Modifiable routes
+│  │  ├─ table.js         // All files (table names)
+│  │  └─ login.js         // Route for login
+│  └─ validation          // Validationes 
+│     ├─ controller       // Controllers
+│     │  └─ table.js      // All files (table names)
+│     ├─ model            // Models
+│     │  └─ table.js      // All files (table names)
+│     └─ repository       // Repositories
+│        └─ table.js      // All files (table names)
+├─ middleware             // Middlewares
+│  └─ jwt.js              // integration JWT
+├─ database.js            // Configuration database
+├─ scheme.js              // Configuration routes
+└─ repository.js          // Methods base
 ```
 
 ### Example Express project
